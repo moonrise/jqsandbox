@@ -9,6 +9,9 @@ handlers:
   static_files: sand.gif
   upload: favicon\.ico
 
+- url: /d
+  static_dir: direct
+
 - url: .*
   script: main.app
 
