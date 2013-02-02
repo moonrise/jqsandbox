@@ -1,12 +1,12 @@
-application: jqsandbox
-version: 1
+application: bjwebapp
+version: 2
 runtime: python27
 api_version: 1
 threadsafe: yes
 
 handlers:
 - url: /favicon\.ico
-  static_files: favicon.ico
+  static_files: sand.gif
   upload: favicon\.ico
 
 - url: .*
