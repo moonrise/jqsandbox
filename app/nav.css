@@ -5,3 +5,93 @@
 #table .ui-icon { background:  url(images/table.gif) 50% 50% no-repeat;  background-size: 16px 16px; }
 #delta .ui-icon { background:  url(images/delta.png) 50% 50% no-repeat;  background-size: 16px 16px; }
 #gear .ui-icon { background:  url(images/19-gear.png) 50% 50% no-repeat;  background-size: 16px 16px; }
+
+@media (min-width:35em){
+    /* wrap on wide viewports once open */
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-left,
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-left,
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-left,
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-left {
+        margin-right: 17em;
+    }
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-right,
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-right,
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-right,
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-right {
+        margin-left: 17em;
+    }
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push,
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal {
+        width: auto;
+    }
+
+    /* disable "dismiss" on wide viewports */
+    .ui-responsive-panel .ui-panel-dismiss-display-push {
+        display: none;
+    }
+}
+
+@media all and (max-width: 35em) {
+    .rwdbreak .ui-block-a,
+    .rwdbreak .ui-block-b,
+    .rwdbreak .ui-block-c,
+    .rwdbreak .ui-block-d,
+    .rwdbreak .ui-block-e {
+        width: 100%;
+        float: none;
+    }
+}
+
+@media ( min-width: 40em ) {
+    /* Show the table header rows and set all cells to display: table-cell */
+    .my-custom-breakpoint td,
+    .my-custom-breakpoint th,
+    .my-custom-breakpoint tbody th,
+    .my-custom-breakpoint tbody td,
+    .my-custom-breakpoint thead td,
+    .my-custom-breakpoint thead th {
+        display: table-cell;
+        margin: 0;
+    }
+    /* Hide the labels in each cell */
+    .my-custom-breakpoint td .ui-table-cell-label,
+    .my-custom-breakpoint th .ui-table-cell-label {
+        display: none;
+    }
+}
+
+/* Show priority 1 at 320px (20em x 16px) */
+@media screen and (min-width: 20em) {
+    .my-custom-class th.ui-table-priority-1,
+    .my-custom-class td.ui-table-priority-1 {
+        display: table-cell;
+    }
+}
+
+/* Show priority 2 at 480px (30em x 16px) */
+@media screen and (min-width: 30em) {
+    .my-custom-class  th.ui-table-priority-2,
+    .my-custom-class td.ui-table-priority-2 {
+        display: table-cell;
+    }
+}
+
+/* Show priority 3 at 640px (40em x 16px) */
+@media screen and (min-width: 40em) {
+    .my-custom-class  th.ui-table-priority-3,
+    .my-custom-class td.ui-table-priority-3 {
+        display: table-cell;
+    }
+}
+
+/* Manually hidden */
+.my-custom-class th.ui-table-cell-hidden,
+.my-custom-class td.ui-table-cell-hidden {
+    display: none;
+}
+
+/* Manually shown */
+.my-custom-class th.ui-table-cell-visible,
+.my-custom-class td.ui-table-cell-visible {
+    display: table-cell;
+}
