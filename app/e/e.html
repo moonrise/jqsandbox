@@ -10,50 +10,280 @@
     <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../nav.css"/>
-    <title>E</title>
+    <!--<title>E</title>-->
+
+    <script>
+        $( document ).on( "pageinit", function() {
+            $( "#popupVideo iframe" )
+                    .attr( "width", 0 )
+                    .attr( "height", 0 );
+
+            $( "#popupVideo" ).on({
+                popupbeforeposition: function() {
+                    var size = scale( 497, 298, 15, 1 ),
+                            w = size.width,
+                            h = size.height;
+
+                    $( "#popupVideo iframe" )
+                            .attr( "width", w )
+                            .attr( "height", h );
+                },
+                popupafterclose: function() {
+                    $( "#popupVideo iframe" )
+                            .attr( "width", 0 )
+                            .attr( "height", 0 );
+                }
+            });
+        });
+
+        $( document ).on( "pageinit", function() {
+            $( "#popupMap iframe" )
+                    .attr( "width", 0 )
+                    .attr( "height", 0 );
+
+            $( "#popupMap iframe" ).contents().find( "#map_canvas" )
+                    .css( { "width" : 0, "height" : 0 } );
+
+            $( "#popupMap" ).on({
+                popupbeforeposition: function() {
+                    var size = scale( 480, 320, 0, 1 ),
+                            w = size.width,
+                            h = size.height;
+
+                    $( "#popupMap iframe" )
+                            .attr( "width", w )
+                            .attr( "height", h );
+
+                    $( "#popupMap iframe" ).contents().find( "#map_canvas" )
+                            .css( { "width": w, "height" : h } );
+                },
+                popupafterclose: function() {
+                    $( "#popupMap iframe" )
+                            .attr( "width", 0 )
+                            .attr( "height", 0 );
+
+                    $( "#popupMap iframe" ).contents().find( "#map_canvas" )
+                            .css( { "width": 0, "height" : 0 } );
+                }
+            });
+        });
+
+        function scale( width, height, padding, border ) {
+            var scrWidth = $( window ).width() - 30,
+                    scrHeight = $( window ).height() - 30,
+                    ifrPadding = 2 * padding,
+                    ifrBorder = 2 * border,
+                    ifrWidth = width + ifrPadding + ifrBorder,
+                    ifrHeight = height + ifrPadding + ifrBorder,
+                    h, w;
+
+            if ( ifrWidth < scrWidth && ifrHeight < scrHeight ) {
+                w = ifrWidth;
+                h = ifrHeight;
+            } else if ( ( ifrWidth / scrWidth ) > ( ifrHeight / scrHeight ) ) {
+                w = scrWidth;
+                h = ( scrWidth / ifrWidth ) * ifrHeight;
+            } else {
+                h = scrHeight;
+                w = ( scrHeight / ifrHeight ) * ifrWidth;
+            }
+
+            return {
+                'width': w - ( ifrPadding + ifrBorder ),
+                'height': h - ( ifrPadding + ifrBorder )
+            };
+        };
+    </script>
 </head>
 
 <body>
-<div data-role="page" data-back-btn-text="Prev">
+<div id="sub1" data-role="page" data-title="Sub Page 1" data-back-btn-text="Prev">
     <div data-role="header" data-theme="b" data-id="siteo" data-position="fixed">
-        <h1>Site Optimizer - Study More</h1>
+        <h1>Site Optimizer - Study Plan</h1>
 
         <a href="../s/s.html" data-icon="gear" class="ui-btn-right">Options</a>
 
         <div data-role="navbar" data-iconpos="top">
             <ul>
-                <li><a href="../a/a.html" data-icon="delete">Study List</a></li>
-                <li><a href="../b/b.html" data-icon="check">Investigator List</a></li>
-                <li><a href="../c/c.html" id="table" data-icon="custom">Site List</a></li>
-                <li><a href="../d/d.html" id="delta" data-icon="custom">Study Plan</a></li>
-                <li><a href="../e/e.html" id="star" data-icon="custom" class="ui-btn-active ui-state-persist">Study More</a></li>
+                <li><a href="../a/a.html" data-icon="delete">Reflow Table</a></li>
+                <li><a href="../b/b.html" data-icon="check">Toggle Table</a></li>
+                <li><a href="../c/c.html" id="delta" data-icon="custom">Study List Reflow</a></li>
+                <li><a href="../d/d.html" id="table" data-icon="custom">Study
+                    Plan</a></li>
+                <li><a href="../e/e.html" id="star" data-icon="custom" class="ui-btn-active ui-state-persist">Misc.</a></li>
             </ul>
         </div>
     </div>
     <!-- /header -->
 
     <div data-role="content">
-        <ul data-role="listview" data-inset="true" data-filter="false" style="display: inline-block;width: 200px">
-            <li><a href="#">Sub View 1</a></li>
-            <li><a href="#">Sub View 2</a></li>
-            <li><a href="#">Sub View 3</a></li>
-            <li><a href="#">Sub View 4</a></li>
-            <li><a href="#">Sub View 5</a></li>
-        </ul>
-        <ul data-role="listview" data-inset="true" data-filter="false" style="float: right">
-            <li><a href="#">Sub View 1</a></li>
-            <li><a href="#">Sub View 2</a></li>
-            <li><a href="#">Sub View 3</a></li>
-            <li><a href="#">Sub View 4</a></li>
-            <li><a href="#">Sub View 5</a></li>
-        </ul>
+        <p>Miscellaneous</p>
+
+        <div class="ui-grid-b">
+            <div class="ui-block-a">
+                <a href="#sub2" style="display: block" data-role="button" data-mini="true">Go to Sub View 2</a>
+                <a href="#sub3" style="display: block" data-role="button" data-mini="true">Go to Sub View 3</a>
+                <a href="#sub3" style="display: block; margin-top: 20px" data-role="button" data-mini="true" data-transition="flip">Sub View 3 - Flip</a>
+                <a href="#sub3" style="display: block" data-role="button" data-mini="true" data-transition="pop">Sub View 3 - Pop</a>
+                <a href="#sub3" style="display: block" data-role="button" data-mini="true" data-transition="slide">Sub View 3 - Slide</a>
+                <a href="#sub3" style="display: block" data-role="button" data-mini="true" data-transition="slidefade">Sub View 3 - Slide Fade</a>
+            </div>
+
+            <div class="ui-block-b">
+                <a href="#popupInfo" data-rel="popup" data-role="button" data-mini="true">Tooltip Like Popup</a>
+                <a href="#popupWithClose" data-rel="popup" data-role="button" data-mini="true">Close Button Popup</a>
+                <a href="#popupMenu" data-rel="popup" data-role="button" data-mini="true">Menu Popup</a>
+                <a href="#popupNested" data-rel="popup" data-role="button" data-mini="true">Nested Menu Popup</a>
+                <a href="#popupImage" data-rel="popup" data-role="button" data-mini="true">Image Popup</a>
+            </div>
+
+            <div class="ui-block-c">
+                <a href="#popupDialog" data-rel="popup" data-role="button" data-mini="true" data-position-to="window" data-transition="pop">Dialog Popup</a>
+                <a href="#popupVideo" data-rel="popup" data-role="button" data-mini="true" data-position-to="window">Video Popup</a>
+                <a href="#popupMap" data-rel="popup" data-role="button" data-mini="true" data-position-to="window">Map Popup</a>
+            </div>
+        </div>
+
+        <div data-role="popup" id="popupInfo" class="ui-content" data-theme="e" style="max-width:300px;">
+            <p>Here is a <strong>tooltip like popup</strong> with multiple lines as needed, and with no close button.</p>
+        </div>
+
+        <div data-role="popup" id="popupWithClose" class="ui-content" data-theme="e" style="max-width:300px;">
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <p>Here is a <strong>popup</strong> with a close button.</p>
+        </div>
+
+        <div data-role="popup" id="popupMenu" data-theme="a">
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="e">
+                <li><a href="#">Item 1</a></li>
+                <li data-role="divider" data-theme="d">--- section divider ---</li>
+                <li><a href="#">Options</a></li>
+                <li><a href="#">Methods</a></li>
+                <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <div data-role="popup" id="popupNested" data-theme="none">
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <div data-role="collapsible-set" data-theme="b" data-content-theme="c" data-collapsed-icon="arrow-r"
+                 data-expanded-icon="arrow-d" style="margin:0; width:250px;">
+                <div data-role="collapsible" data-inset="false">
+                    <h2>Farm animals</h2>
+                    <ul data-role="listview">
+                        <li><a href="../dialog.html" data-rel="dialog">Chicken</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Cow</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Duck</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Sheep</a></li>
+                    </ul>
+                </div>
+                <!-- /collapsible -->
+                <div data-role="collapsible" data-inset="false">
+                    <h2>Pets</h2>
+                    <ul data-role="listview">
+                        <li><a href="../dialog.html" data-rel="dialog">Cat</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Dog</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Iguana</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Mouse</a></li>
+                    </ul>
+                </div>
+                <!-- /collapsible -->
+                <div data-role="collapsible" data-inset="false">
+                    <h2>Ocean Creatures</h2>
+                    <ul data-role="listview">
+                        <li><a href="../dialog.html" data-rel="dialog">Fish</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Octopus</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Shark</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Starfish</a></li>
+                    </ul>
+                </div>
+                <!-- /collapsible -->
+                <div data-role="collapsible" data-inset="false">
+                    <h2>Wild Animals</h2>
+                    <ul data-role="listview">
+                        <li><a href="../dialog.html" data-rel="dialog">Lion</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Monkey</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Tiger</a></li>
+                        <li><a href="../dialog.html" data-rel="dialog">Zebra</a></li>
+                    </ul>
+                </div>
+                <!-- /collapsible -->
+            </div>
+            <!-- /collapsible set -->
+        </div>
+        <!-- /popup -->
+
+        <div data-role="popup" id="popupDialog" data-overlay-theme="e" data-theme="c" style="max-width:400px;" class="ui-corner-all">
+            <div data-role="header" data-theme="a" class="ui-corner-top">
+                <h1>Delete Page?</h1>
+            </div>
+            <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+                <h3 class="ui-title">Are you sure you want to delete this page?</h3>
+                <p>This action cannot be undone.</p>
+                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>
+                <a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b">Delete</a>
+            </div>
+        </div>
+
+        <div data-role="popup" id="popupImage" data-overlay-theme="e" data-theme="d" data-corners="false">
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <img class="popphoto" src="../images/scorecard.png" alt="Site Optimizer">
+        </div>
+
+        <div data-role="popup" id="popupVideo" data-overlay-theme="a" data-theme="d" data-tolerance="15,15" class="ui-content">
+            <iframe src="http://player.vimeo.com/video/41135183" width="497" height="298" seamless></iframe>
+        </div>
+
+        <div data-role="popup" id="popupMap" data-overlay-theme="a" data-theme="a" data-corners="false" data-tolerance="15,15">
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <iframe src="../util/gmap.html" width="480" height="320" seamless></iframe>
+        </div>
     </div>
     <!-- /content -->
 
     <div data-role="footer" data-theme="b" data-id="sitefooter" data-position="fixed">
-        <h4>Page Footer E</h4>
+        <h4>Page Footer D</h4>
     </div>
     <!-- /footer -->
+</div>
+
+<!-- Start of second page -->
+<div data-role="page" id="sub2" data-title="Sub Page 2">
+    <div data-role="header" data-theme="b" data-id="siteo" data-position="fixed">
+        <h1>Sub View 2</h1>
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+        <p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that
+            references my id is being clicked.</p>
+
+        <a href="#sub1" style="display: block">Go to Sub View 1</a>
+        <a href="#sub3" style="display: block">Go to Sub View 3</a>
+        <a href="#sub1" style="display: block; margin-top: 20px" data-transition="flip">Go to Sub View 1 with Flip</a>
+        <a href="#sub1" style="display: block" data-transition="pop">Go to Sub View 1 with Pop</a>
+        <a href="#sub1" style="display: block" data-transition="slide">Go to Sub View 1 with Slide</a>
+        <a href="#sub1" style="display: block" data-transition="slidefade">Go to Sub View 1 with Slide Fade</a>
+    </div>
+    <!-- /content -->
+
+    <div data-role="footer">
+        <h4>Page Footer</h4>
+    </div>
+    <!-- /footer -->
+</div>
+<!-- /page -->
+
+<!-- Start of third page -->
+<div data-role="page" id="sub3" data-title="Sub Page 3">
+    <h1>Sub View 3</h1>
+    <a href="#sub1" style="display: block">Go to Sub View 1</a>
+    <a href="#sub2" style="display: block">Go to Sub View 2</a>
+
+    <a href="#sub1" style="display: block; margin-top: 20px" data-transition="flip">Go to Sub View 1 with Flip</a>
+    <a href="#sub1" style="display: block" data-transition="pop">Go to Sub View 1 with Pop</a>
+    <a href="#sub1" style="display: block" data-transition="slide">Go to Sub View 1 with Slide</a>
+    <a href="#sub1" style="display: block" data-transition="slidefade">Go to Sub View 1 with Slide Fade</a>
 </div>
 </body>
 </html>

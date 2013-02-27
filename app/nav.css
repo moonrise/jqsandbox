@@ -84,6 +84,31 @@
     }
 }
 
+/* Show priority 4 */
+@media screen and (min-width: 50em) {
+    .my-custom-class  th.ui-table-priority-4,
+    .my-custom-class td.ui-table-priority-4 {
+        display: table-cell;
+    }
+}
+
+
+/* Show priority 5 */
+@media screen and (min-width: 60em) {
+    .my-custom-class  th.ui-table-priority-5,
+    .my-custom-class td.ui-table-priority-5 {
+        display: table-cell;
+    }
+}
+
+/* Show priority 6 */
+@media screen and (min-width: 70em) {
+    .my-custom-class  th.ui-table-priority-6,
+    .my-custom-class td.ui-table-priority-6 {
+        display: table-cell;
+    }
+}
+
 /* Manually hidden */
 .my-custom-class th.ui-table-cell-hidden,
 .my-custom-class td.ui-table-cell-hidden {
